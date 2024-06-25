@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="storage.css" rel="stylesheet">
+    <title>Score Counter</title>
+</head>
+<body>
+    <div id="localScore">Local Score: 0</div>
+    <div id="sessionScore">Session Score: 0</div>
+    <button id="incrementButton">Increment Scores</button>
+    <script>
+        
+function updateScores() {
+    document.getElementById('localScore').textContent = "Local Score: " + (localStorage.getItem('localScore')||0 );
+    document.getElementById('sessionScore').textContent = "Session Score: " + (sessionStorage.getItem('sessionScore')||0);
+}
+document.getElementById('incrementButton').addEventListener('click', () => {
+    let localScore = localStorage.getItem('localScore') || 0;
+    let sessionScore = sessionStorage.getItem('sessionScore') || 0;
+    localScore++;
+    sessionScore ++;
+    localStorage.setItem('localScore', localScore);
+    sessionStorage.setItem('sessionScore', sessionScore);
+    updateScores();
+});
+
+updateScores();
+    </script>
+</body>
+</html>
+
